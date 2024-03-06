@@ -3,13 +3,14 @@
 #include <string>
 
 struct node{
+    
     // Each node contains an array of node pointers of size 26 (one child per alphabet letter)
     node *children[26];
 
     // Indicates node is an end of a word
     bool end_of_word;
 
-    // Constructor
+    // Constructor  
     node();
 };
 
@@ -28,11 +29,16 @@ class trie{
         trie();
         ~trie();
 
+        // Trie Helper functions
+        int prefix_helper(node *node, int &counter);
+        void print_helper(node *&node);
+        node* search(node *node, std::string word_to_search);
+        void delete_word(node *node, std::string word_to_delete);
 
         // Trie functions
         void load();
         void insert(std::string word);
-        void prefix(std::string prefix);
+        void prefix_command(std::string prefix);
         void erase(std::string word);
         void print();
         void spellcheck(std::string word);
@@ -40,3 +46,14 @@ class trie{
         void clear();
         void size();
 };
+
+/* Pseudocode
+
+insert --> done
+
+prefix --> reccursively check all children of word and how many are words
+
+
+
+
+*/ 
