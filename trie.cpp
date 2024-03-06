@@ -45,8 +45,19 @@ int trie::prefix_helper(node *node, int &counter){
     return counter;
 }
 
-void trie::print_helper(node *&node){
-    
+void trie::print_helper(node *node, std::string output){
+
+    for (int i = 0; i < 26; i++){
+
+        // Check if children exists, if so recurse through the grandchildren
+        if (node->children[i] != nullptr){
+            char letter = 'a' + i;
+            print_helper(node->children[i], output + letter );
+        }
+    }
+
+    // After recursing check if those children are end of words, if so output
+    if (node->end_of_word == true){std::cout << output << " ";}
 }
 
 // Search for the node that a word corresponds to
@@ -67,9 +78,10 @@ node* trie::search(node *node, std::string word_to_search){
 
 void trie::delete_word(node *current_node, std::string word_to_delete){
 
-    // Base case: if our string is empty
-    // If it is the end of the word, delete that node
+    // Base case: if our string is empty delete that node
     if (word_to_delete.empty()){
+        std::cout << "deleted" << std::endl;
+        number_of_words--;
         delete current_node;
         current_node = nullptr;
         return;
@@ -77,16 +89,58 @@ void trie::delete_word(node *current_node, std::string word_to_delete){
 
     // Traverse the tree recursively 
     int letter_index = word_to_delete[0] - 'a';
-    node *parent = current_node;
-    current_node = current_node->children[letter_index];
-    delete_word(current_node, word_to_delete.substr(1));
+    
+    delete_word(current_node->children[letter_index], word_to_delete.substr(1));
+
+    if (current_node->children[letter_index] == nullptr){std::cout << "deleted fr" << std::endl;}
+    
 
     // Check if the parent node has any children after deleting, if not delete the parent
-    for (int i = 0; i<26; i++){
-        if (parent->children[i] != nullptr || parent == root){return;}
+    for (int i = 0; i < 26; i++){
+        std::cout << "index: " << i << std::endl;
+        if (current_node->children[i] != nullptr || current_node == root){return;}
+        
     }
 
-    delete parent;
+
+    std::cout << "deleted parent " << std::endl;
+    // parent->end_of_word = false;
+    // number_of_words--;
+    delete current_node;
+    current_node = nullptr;
+    return;
+}
+
+void trie::spellcheck_helper1(node *node, std::string input, std::string output){
+
+    // Basecase
+    if (input.empty()){return;}
+
+    // Traverse the tree recursively 
+    int letter_index = input[0] - 'a';
+    
+    // If the letter doesn't exist return
+    if (node->children[letter_index] == nullptr){return;}
+    char letter = 'a' + letter_index;
+    spellcheck_helper1(node->children[letter_index], input.substr(1), output + letter);
+    if (node == root) {return;}
+    spellcheck_helper2(node, output);
+}
+
+void trie::spellcheck_helper2(node *node, std::string output){
+
+    for (int i = 0; i < 26; i++){
+
+        // Check if children exists, if so recurse through the grandchildren
+        if (node->children[i] != nullptr){
+            char letter = 'a' + i; 
+            // After recursing check if those children are end of words, if so output
+            if (node->children[i]->end_of_word == true){std::cout << output+letter << " ";}
+            spellcheck_helper2(node->children[i], output + letter);
+        }
+    }
+
+    
 }
 
 // Trie command functions
@@ -162,12 +216,33 @@ void trie::erase(std::string word){
         std::cout << "success" << std::endl;
     }
 
-};
-void trie::print(){
-    print_helper(root);
 }
 
-void trie::spellcheck(std::string word){};
-void trie::empty(){};
-void trie::clear(){};
-void trie::size(){};
+void trie::print(){
+    if (!empty_trie){print_helper(root, "");}
+    std::cout << std::endl;
+}
+
+void trie::spellcheck(std::string word){
+
+    // Search for the word in the tree, if it exists print correct
+    node* found_node = search(root, word);
+
+    if (found_node != nullptr && found_node->end_of_word){std::cout << "correct" << std::endl;}
+    else{
+        
+        spellcheck_helper1(root, word, "");
+        std::cout << std::endl;
+    }
+}
+
+void trie::empty(){
+    if (empty_trie) {std::cout << "empty 1" << std::endl;}
+    else{std::cout << "empty 0" << std::endl;}
+}
+
+void trie::clear(){}
+
+void trie::size(){
+    std::cout << number_of_words << std::endl;
+}

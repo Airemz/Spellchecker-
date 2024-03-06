@@ -31,9 +31,11 @@ class trie{
 
         // Trie Helper functions
         int prefix_helper(node *node, int &counter);
-        void print_helper(node *&node);
         node* search(node *node, std::string word_to_search);
         void delete_word(node *node, std::string word_to_delete);
+        void print_helper(node *node, std::string output);
+        void spellcheck_helper1(node *node, std::string input, std::string output);
+        void spellcheck_helper2(node *node, std::string output);
 
         // Trie functions
         void load();

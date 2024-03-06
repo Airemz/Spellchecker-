@@ -15,7 +15,7 @@ int main(){
         // Receive User input
         std::string user_input = "";
         std::getline (std::cin,user_input);
-        std::string paramater = user_input.substr(2);
+        
 
         // Call appropriate functions
         if (user_input.find("load") != std::string::npos) {
@@ -23,24 +23,28 @@ int main(){
         }
 
         else if (user_input[0] == 'i') {
+            std::string paramater = user_input.substr(2);
             Grammarly->insert(paramater);
         }
 
         else if (user_input[0] == 'c') {
+            std::string paramater = user_input.substr(2);
             Grammarly->prefix_command(paramater);
         }
 
         else if (user_input[0] == 'e') {
+            std::string paramater = user_input.substr(2);
             Grammarly->erase(paramater);
             
         }
 
         else if (user_input[0] == 'p') {
-            
+            Grammarly->print();
         }
 
         else if (user_input.find("spellcheck") != std::string::npos) {
-            
+            std::string paramater = user_input.substr(user_input.find(' ') + 1);
+            Grammarly->spellcheck(paramater);
         }
 
         else if (user_input.find("empty") != std::string::npos) {
@@ -52,7 +56,7 @@ int main(){
         }
 
         else if (user_input.find("size") != std::string::npos) {
-            
+            Grammarly->size();
         }
 
 
