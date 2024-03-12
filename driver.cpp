@@ -1,6 +1,7 @@
 // include libraries here (STL not allowed)
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "trie.h"
 
 
@@ -8,6 +9,8 @@ int main(){
     
     // your code goes here...  
     trie *Grammarly = new trie;
+
+    //./spellcheck.out < inputs/test01.in > my_outputs/mtest01.out
 
     // Create an infinite while loop which can only be exited with "done" command
     while (true){
@@ -19,7 +22,27 @@ int main(){
 
         // Call appropriate functions
         if (user_input.find("load") != std::string::npos) {
-            std::cout << "load" << std::endl;
+            std::ifstream file;
+            file.open ("corpus.txt");
+
+            std::string word;
+            while (file >> word){
+                Grammarly->load(word);
+            }
+
+            std::cout << "success" << std::endl;
+        }
+
+        else if (user_input.find("exit") != std::string::npos) {
+            return 0;
+        }
+
+        else if (user_input.find("empty") != std::string::npos) {
+            Grammarly->empty();
+        }
+
+        else if (user_input.find("clear") != std::string::npos) {
+            Grammarly->clear();
         }
 
         else if (user_input[0] == 'i') {
@@ -47,27 +70,8 @@ int main(){
             Grammarly->spellcheck(paramater);
         }
 
-        else if (user_input.find("empty") != std::string::npos) {
-            
-        }
-
-        else if (user_input.find("clear") != std::string::npos) {
-            
-        }
-
         else if (user_input.find("size") != std::string::npos) {
             Grammarly->size();
-        }
-
-
-        else{
-            // why does exit not exit the program helpppp
-            
-            // Call the trie destructor and exit the program
-            //delete Grammarly;
-            break;
-            std::cout << "dog" << std::endl;
-            exit(0);
         }
     }
 }

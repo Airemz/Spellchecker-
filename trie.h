@@ -7,10 +7,11 @@ struct node{
     // Each node contains an array of node pointers of size 26 (one child per alphabet letter)
     node *children[26];
 
-    // Indicates node is an end of a word
+    // Other Important vars
     bool end_of_word;
+    int num_of_children;
 
-    // Constructor  
+    // Constructor
     node();
 };
 
@@ -31,14 +32,16 @@ class trie{
 
         // Trie Helper functions
         int prefix_helper(node *node, int &counter);
-        node* search(node *node, std::string word_to_search);
-        void delete_word(node *node, std::string word_to_delete);
-        void print_helper(node *node, std::string output);
-        void spellcheck_helper1(node *node, std::string input, std::string output);
-        void spellcheck_helper2(node *node, std::string output);
+        node* search(node *node, std::string &word_to_search, unsigned int index);
+        void delete_node(node *current_node, int index);
+        void erase_helper(node *node, std::string &word_to_delete, bool &deleted, unsigned int index);
+        void print_helper(node *node, std::string &output);
+        void spellcheck_helper1(node *node, std::string &input, std::string &output, bool &tracker, unsigned int index);
+        bool spellcheck_helper2(node *node, std::string &output, bool &tracker);
+        void clear_helper(node *node);
 
         // Trie functions
-        void load();
+        void load(std::string word);
         void insert(std::string word);
         void prefix_command(std::string prefix);
         void erase(std::string word);
