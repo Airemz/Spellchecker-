@@ -23,7 +23,7 @@ node::node(){
 // Constructor - initialize the root and private vars
 trie::trie(){
     root = new node();
-    empty_trie = false;
+    empty_trie = true;
     number_of_words = 0;
 }
 
@@ -337,8 +337,11 @@ void trie::erase(std::string word){
 // O(N)
 void trie::print(){
 
-    // Check if the trie is not empty, if it is the function will do nothing
-    if (!empty_trie){
+    // If the trie is empty, do nothing as stated on piazza
+    if (empty_trie){return;}
+
+    // Since the trie is not empty, output the words and end the line
+    else{
         
         // Initialize an empty string for outputting and call the recursive helper function. When all words are outputted, end the line.
         std::string empty_string = "";
@@ -357,8 +360,8 @@ void trie::spellcheck(std::string word){
 
     if (found_node != nullptr && found_node->end_of_word){std::cout << "correct" << std::endl;}
 
-    // Check if the trie is empty
-    else if(empty_trie){return;}
+    // Check if the trie is empty, if so output a blank line
+    else if(empty_trie){std::cout << std::endl;}
 
     else{
         
@@ -367,8 +370,7 @@ void trie::spellcheck(std::string word){
         bool flag = false;
         spellcheck_helper_traverse(root, word, empty_string, flag);    
         
-        
-        // Always output a new line
+        // Always outpifut a new line
         std::cout << std::endl;
     }
 }
@@ -385,11 +387,26 @@ void trie::empty(){
 // O(N)
 void trie::clear(){
     
-    // Check if the trie is already empty, if not call reccursive helper function
-    if (!empty_trie){clear_helper(root);}
+    // Check if the trie is already empty, if not call reccursive helper function and set the trie as empty after
+    if (!empty_trie){
+        clear_helper(root);
+        empty_trie = true;
+    }
 
+    
     // Always output success
     std::cout << "success" << std::endl;
+}
+
+// Exact same as clear except output nothing.
+// No Time complexity
+void trie::exit(){
+    
+    // Check if the trie is already empty, if not call reccursive helper function and set the trie as empty
+    if (!empty_trie){
+        clear_helper(root);
+        empty_trie = true;
+    }
 }
 
 // Output number of words in the trie

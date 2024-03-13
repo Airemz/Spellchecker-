@@ -51,5 +51,6 @@ class trie{
         void spellcheck(std::string word);
         void empty();
         void clear();
+        void exit();
         void size();
 };

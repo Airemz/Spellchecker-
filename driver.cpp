@@ -11,9 +11,11 @@ int main(){
     trie *Grammarly = new trie;
 
     //./spellcheck.out < inputs/test01.in > my_outputs/mtest01.out
+
+    // Add -g to cxxflags in make file
     //valgrind --leak-check=full --show-leak-kinds=all ./spellcheck.out <inputs/test03.in 
 
-    // Check e time complexity and edge cases for all functions/more testcases
+    // Check e time complexity since its using search and should print and spellcheck output endl?
 
     // Create an infinite while loop which can only be exited with "exit" command
     while (true){
@@ -22,7 +24,6 @@ int main(){
         std::string user_input = "";
         std::getline (std::cin,user_input);
         
-
         // Call appropriate functions based on input
 
         // Load: Open given file and extract words until end. Output success after.
@@ -40,7 +41,7 @@ int main(){
 
         // Exit: calls clear function, then call the destructor to delete the root
         else if (user_input.find("exit") != std::string::npos) {
-            Grammarly->clear();
+            Grammarly->exit();
             delete Grammarly;
             return 0;
         }
