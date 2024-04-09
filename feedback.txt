@@ -1,0 +1,111 @@
+Project Name: ece250-w24-lab2-s3rahman
+
+
+===> Project Clone Result:
+Project Name: ece250-w24-lab2-s3rahman
+user: ece250-w24-lab2-s3rahman
+files: True
+Last Update Date: 2024-03-13T17:08:53.947-04:00
+Deadline: 2024-03-13, 11:59pm
+Penalty Percentage: 0
+Project ID: 89182
+
+===> Make Result: 
+success
+
+===> Marking Scheme - test cases
+******* TestCases: 90%
+   There are 11 test input files.
+** TestCases 1-10: 70%
+   Input files 01 through 10 test specific functionality. Each line in those files is worth 1 mark, for a total of 70 marks.
+** TestCases 11: 20%
+   Test 11 stress tests the code a huge number of times. It is worth 20 marks total, graded as follows:
+   There are 227208 lines in that file:
+   +20: all lines correct
+   +10: at least 75% of the lines correct
+   +5: at least 50% of the lines correct
+   With no part marks.
+******* Memory Leak : 5%
+   +5: if the total memory leak is zero
+******* Performance : 5%
+   +5: if 'Test 11 Elapsed Time(s)' is less than 15.0(s)
+   +2: if 'Test 11 Elapsed Time(s)' is from 15.0(s) to 20.0(s)
+
+
+===> Performance - time (CPU: AMD Ryzen 9 5900X 12-Core Processor):
+Project Name: ece250-w24-lab2-s3rahman
+Test 1 Result: success
+Test 1 Elapsed Time (s): 0.044918776
+Test 2 Result: success
+Test 2 Elapsed Time (s): 0.043792963
+Test 3 Result: success
+Test 3 Elapsed Time (s): 0.047760725
+Test 4 Result: success
+Test 4 Elapsed Time (s): 0.051814556
+Test 5 Result: success
+Test 5 Elapsed Time (s): 0.043783188
+Test 6 Result: success
+Test 6 Elapsed Time (s): 0.047784328
+Test 7 Result: success
+Test 7 Elapsed Time (s): 0.079854965
+Test 8 Result: success
+Test 8 Elapsed Time (s): 0.047775269
+Test 9 Result: success
+Test 9 Elapsed Time (s): 0.075880289
+Test 10 Result: success
+Test 10 Elapsed Time (s): 0.047783375
+Test 11 Result: success
+Test 11 Elapsed Time (s): 7.556125641
+
+
+===> Test cases - Scores:
+Project Name: ece250-w24-lab2-s3rahman
+Score01: 3
+Score02: 6
+Score03: 8
+Score04: 3
+Score05: 8
+Score06: 7
+Score07: 6
+Score08: 5
+Score09: 16
+Score10: 8
+Score11: 227208
+Total Score: 227278
+Mismatched Lines: 
+Skipped Tests: 0
+
+
+===> STL Usage Results:
+Project Name: ece250-w24-lab2-s3rahman
+driver.cpp (STL Usage): 0
+trie.h (STL Usage): 0
+trie.cpp (STL Usage): 0
+Total STL Usage: 0
+
+
+===> OOP Principles Results:
+Project Name: ece250-w24-lab2-s3rahman
+Class Definition: Yes
+Access Modifiers: No Access Modifiers
+Encapsulation: Good
+Inheritance: No Inheritance
+Polymorphism: No Polymorphism
+Constructor/Destructor: Good
+
+
+===> References Result:
+Project Name: ece250-w24-lab2-s3rahman
+References: 
+
+
+===> Valgrind Results:
+Project Name: ece250-w24-lab2-s3rahman
+test04.in Log: N/A
+test04.in Memory Leak: N/A
+test09.in Log: N/A
+test09.in Memory Leak: N/A
+test10.in Log: N/A
+test10.in Memory Leak: N/A
+Total Memory Leak: 0
+Valgrind Errors: 
